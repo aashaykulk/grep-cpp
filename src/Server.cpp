@@ -1,13 +1,23 @@
 #include <iostream>
 #include <string>
+using namespace std;
 
 bool match_pattern(const std::string& input_line, const std::string& pattern) {
     if (pattern.length() == 1) {
         return input_line.find(pattern) != std::string::npos;
     }
+    else if(pattern == "\\d") {
+      for (const char c : input_line) {
+        if(isdigit(c)) {
+          return 1;
+        }
+      }
+      return 0;
+    }
     else {
         throw std::runtime_error("Unhandled pattern " + pattern);
     }
+
 }
 
 int main(int argc, char* argv[]) {
